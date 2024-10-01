@@ -4,7 +4,7 @@ pom.xml.asc
 *.class
 /lib/
 /classes/
-/target/
+target/
 /checkouts/
 .idea/
 .clj-kondo/
