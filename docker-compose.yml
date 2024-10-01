@@ -1,0 +1,62 @@
+version: '3.1'
+
+services:
+  db: 
+    image: mysql:5.6
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '123'
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: 'guest'
+      RABBITMQ_DEFAULT_PASS: 'guest'
+    networks:
+      - app-network
+
+  # crud:
+  #   build:
+  #     context: ./spaced-repetition-crud
+  #     dockerfile: Dockerfile
+  #   depends_on:
+  #     - rabbitmq
+  #     - db
+  #   ports:
+  #     - "3300:3300"
+  #   networks:
+  #     - app-network
+
+  # processing:
+  #   build:
+  #     context: ./spaced-repetition-processing
+  #     dockerfile: Dockerfile
+  #   depends_on:
+  #     - rabbitmq
+  #     - db
+  #   networks:
+  #     - app-network
+
+  # frontend:
+  #   build:
+  #     context: ./spaced-repetition-front
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "80:80"
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql:
