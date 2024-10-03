@@ -23,36 +23,36 @@ services:
     networks:
       - app-network
 
-  # crud:
-  #   build:
-  #     context: ./spaced-repetition-crud
-  #     dockerfile: Dockerfile
-  #   depends_on:
-  #     - rabbitmq
-  #     - db
-  #   ports:
-  #     - "3300:3300"
-  #   networks:
-  #     - app-network
+  crud:
+    build:
+      context: ./spaced-repetition-crud
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+      - db
+    ports:
+      - "3300:3300"
+    networks:
+      - app-network
 
-  # processing:
-  #   build:
-  #     context: ./spaced-repetition-processing
-  #     dockerfile: Dockerfile
-  #   depends_on:
-  #     - rabbitmq
-  #     - db
-  #   networks:
-  #     - app-network
+  processing:
+    build:
+      context: ./spaced-repetition-processing
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+      - db
+    networks:
+      - app-network
 
-  # frontend:
-  #   build:
-  #     context: ./spaced-repetition-front
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "80:80"
-  #   networks:
-  #     - app-network
+  frontend:
+    build:
+      context: ./spaced-repetition-front
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - app-network
 
 networks:
   app-network:
