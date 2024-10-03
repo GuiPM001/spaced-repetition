@@ -18,7 +18,7 @@
 
 (defn handle-message [^bytes message]
   (let [data (logic/convert-bytes-to-map message)]
-    (services/process-review (:id data) (:qtd-days data))))
+    (future (services/process-review (:id data) (:qtd-days data)))))
 
 (defn start-consumer []
   (let [channel (open-connection)]
