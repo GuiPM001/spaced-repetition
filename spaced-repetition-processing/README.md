@@ -43,4 +43,4 @@ This is the **Review Processing Microservice** for the spaced repetition study s
    lein run
    ```
 
-6. Once the services are running, **access the RabbitMQ Management** by navigating to [localhost:15672](localhost:15672) in your browser to publish messages.
+6. Once the services are running, **access the RabbitMQ Management** by navigating to [http://localhost:15672](http://localhost:15672) in your browser to publish messages.
