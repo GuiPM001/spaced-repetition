@@ -9,14 +9,19 @@ function App() {
   const [cards, setCards] = useState<Card[]>([]);
   const [reviewInProcess, setReviewInProcess] = useState<boolean>(false);
   const [showAddCardDialog, setShowAddCardDialog] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     getCards();
   }, [showAddCardDialog]);
 
   const getCards = async () => {
+    setLoading(true);
+
     const response = await fetchCardsToReview();
     setCards(response.data);
+
+    setLoading(false);
   };
 
   const endReview = () => {
@@ -34,7 +39,7 @@ function App() {
         <section className="flex flex-col items-center gap-2">
           <p className="mb-4">
             Total cards to review:
-            <span className="font-semibold"> {cards.length} </span>
+            <span className="font-semibold"> {loading ? "loading..." : cards.length} </span>
           </p>
 
           <Button
