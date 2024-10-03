@@ -22,25 +22,26 @@ This is the **Flashcards API** for a spaced repetition study system. The API all
 - Docker
 
 ### Steps to Run
-
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/flashcards-api.git
+   git clone https://github.com/GuiPM001/spaced-repetition.git
    ```
 
 2. Navigate to the project folder:
-   ```
-   cd flashcards-api
+   ```bash
+   cd spaced-repetition/spaced-repetition-crud
    ```
 
 3. Run the following command to start the application using Docker Compose:
-   ```
+   ```bash
    docker-compose up -d
    ```
 
 4. **Connect to the database** and execute the commands found in the `scripts.sql` file to create the database schema.
 
 5. To run the API in Clojure, run the command below inside the project directory:
-   ```
+   ```bash
    lein run
    ```
+  
+6. Once the services are running, **access the swagger** by navigating to [http://localhost:3300/swagger](http://localhost:3300/swagger) in your browser to access swagger api.

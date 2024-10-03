@@ -1,22 +1,46 @@
-# spaced-repetition-processing
+# Review Processing Microservice - Spaced Repetition System
 
-A Clojure library designed to ... well, that part is up to you.
+![Clojure](https://img.shields.io/badge/Clojure-%23Clojure.svg?style=for-the-badge&logo=Clojure&logoColor=Clojure)
+![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![RabbitMQ](https://img.shields.io/badge/Rabbitmq-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white)
 
-## Usage
+This is the **Review Processing Microservice** for the spaced repetition study system. It consumes messages from RabbitMQ, processes user reviews, and calculates the next review date for each flashcard based on the spaced repetition technique.
 
-FIXME
+## Main Features
 
-## License
+- **Message Consumption**: Listens to messages from a RabbitMQ queue where each message contains data about a reviewed flashcard.
+- **Review Processing**: Processes the review by calculating the next review date based on spaced repetition algorithms.
+- **Update Flashcard**: Saves the updated review data, including the next review date, in the database.
 
-Copyright © 2024 FIXME
+## How to Run the Project
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+### Requirements
+- JDK
+- Leiningen (https://leiningen.org/)
+- Docker
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+### Steps to Run
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/GuiPM001/spaced-repetition.git
+   ```
+
+2. Navigate to the project folder:
+   ```bash
+   cd spaced-repetition/spaced-repetition-processing
+   ```
+
+3. Run the following command to start the application using Docker Compose:
+   ```bash
+   docker-compose up -d
+   ```
+
+4. **Connect to the database** and execute the commands found in the `scripts.sql` file to create the database schema.
+
+5. To run the API in Clojure, run the command below inside the project directory:
+   ```
+   lein run
+   ```
+
+6. Once the services are running, **access the RabbitMQ Management** by navigating to [localhost:15672](localhost:15672) in your browser to publish messages.
