@@ -9,11 +9,6 @@
    :host     "db"
    :port     3306})
 
-(defn get-by-id [id]
-  (jdbc/query db-spec ["SELECT *
-                        FROM cards
-                        WHERE id = ?" id]))
-
 (defn insert [front back next-review]
   (jdbc/execute! db-spec
                  ["INSERT INTO cards (front, back, next_review, next_qtd_days) VALUES (?, ?, ?, 1)"

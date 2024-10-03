@@ -7,12 +7,6 @@
   (let [next-review (logic/get-current-date)]
     (db/insert front back next-review)))
 
-(defn get-card-by-id [id]
-  (let [cards (db/get-by-id id)]
-    (if (empty? cards)
-      {:message "Card with id " id " not found."}
-      (first cards))))
-
 (defn review-card [id option-choose]
   (let [message (str "{\"id\":" id ",\"qtd-days\":" option-choose "}")]
     (queue/send-message "process-review" message)))

@@ -3,8 +3,7 @@
             [ring.util.http-response :as http-response]
             [schema.core :as s]
             [spaced-repetition-crud.controllers.cards :as controller]
-            [spaced-repetition-crud.schemas.cards :as schemas]
-            [ring.middleware.cors :as cors]))
+            [spaced-repetition-crud.schemas.cards :as schemas]))
 
 (defn routes []
   (sw/api {:swagger
@@ -14,10 +13,10 @@
                           :description "API to manage flashcards for spaced repetition study technique"
                           :consumes    ["application/json"]
                           :produces    ["application/json"]}
-                   :tags [{:name "card" :description "Flashcards operations"}]}}}
+                   :tags [{:name "Card" :description "Flashcards operations"}]}}}
 
           (sw/context "/card" []
-            :tags ["card"]
+            :tags ["Card"]
             (sw/POST "/" []
               :body [card schemas/NewCardDTO]
               :summary "Add a new flashcard"
@@ -31,13 +30,4 @@
             (sw/GET "/cards-to-review" []
               :return [schemas/CardDTO]
               :summary "Returns all flashcard to review"
-              (http-response/ok (controller/get-cards-to-review)))
-
-            (sw/GET "/:id" []
-              :path-params [id :- s/Int]
-              :return schemas/CardDTO
-              :summary "Returns flashcard based on id"
-              (let [card (controller/get-card-by-id id)]
-                (if card
-                  (http-response/ok card)
-                  (http-response/not-found {:error (str "Card with id " id " not found.")})))))))
+              (http-response/ok (controller/get-cards-to-review))))))
