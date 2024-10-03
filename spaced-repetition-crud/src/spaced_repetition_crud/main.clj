@@ -1,14 +1,15 @@
 (ns spaced-repetition-crud.main
   (:gen-class)
-  (:require [io.pedestal.http :as http]
-            [spaced-repetition-crud.routes.cards :as routes]))
+  (:require [ring.adapter.jetty :refer [run-jetty]]
+            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
+            [spaced-repetition-crud.api :as api]
+            [spaced-repetition-crud.middleware.cors :as m]))
 
-(defn create-server []
-  (http/create-server
-    {::http/routes routes/routes
-     ::http/type   :jetty
-     ::http/port   3300
-     ::http/allowed-origins {:allowed-origins (constantly true)}}))
+(defn start-server []
+  (let [handler (-> (api/routes)
+                    (wrap-defaults api-defaults)
+                    (m/all-cors))]
+    (run-jetty handler {:port 3300 :join? false})))
 
-(defn -main []
-  (http/start (create-server)))
+(defn -main [& args]
+  (start-server))

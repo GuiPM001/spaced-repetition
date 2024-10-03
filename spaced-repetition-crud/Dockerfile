@@ -10,4 +10,4 @@ RUN lein uberjar
 
 EXPOSE 3300
 
-CMD ["java", "-jar", "target/spaced-repetition-crud-0.1.0-SNAPSHOT-standalone.jar"]
+CMD ["java", "-jar", "target/uberjar/spaced-repetition-crud-0.1.0-SNAPSHOT-standalone.jar"]
