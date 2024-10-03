@@ -19,7 +19,7 @@ The application consists of three main components:
    - Connected to **RabbitMQ**, this microservice consumes messages from the queue, containing user-performed reviews.
    - It processes the reviews and adjusts the review intervals according to the fibonacci sequence.
 
-![Arquitetura do Sistema](./images/flowchart.png)
+![project architecture](./images/flowchart.png)
 
 ## How to Run the Project
 
